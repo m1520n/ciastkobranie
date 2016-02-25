@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+}
+
+#game {
+    font-size: 40px;
+    width: 8em;
+    height:12em;
+    font-family: rifficregular;
+    color: rgb(255,255,255);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 400px;
+    height: 640px;
+    background-color : rgb(39,174,96);
+}
+
+#game .screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 10;
+}
+
+#game .screen.active {
+    display: block;
+}
+
+#main-menu {
+    padding-top: 1em;
+}
+
+ul.menu {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+ul.menu {
+    margin: 0.8em 0;
+}
+
+ul.menu li button {
+    font-family: robotoregular;
+    font-size: 0.5em;
+    color: rgb(255,255,255);
+    width: 10em;
+    height: 1.5em;
+    background: rgb(230,126,34);
+    border-radius: 0.25em;
+    -webkit-box-shadow: inset 0.2em 0.2em 0.3em rgb(230, 126, 34);
+    -moz-box-shadow: inset 0.2em 0.2em 0.3em rgb(230, 126, 34);
+    box-shadow: inset 0.2em 0.2em 0.3em rgb(230, 126, 34);
+    -webkit-appearance: none;
+    padding-bottom: 7px;
+        border: 2px outset buttonface;
+}
+
+ul.menu li button:hover {
+    background: rgb(243,156,18);
+}
+
+ul.menu li button:active {
+    background: rgb(243,156,18);
+}
+
+
+.logo {
+    font-size: 1em;
+    line-height: 1.5em;
+    margin: 0;
+    text-align: center;
+    color: rgb(95,103,105);
+
+}
+
+#splash-screen {
+    text-align: center;
+    padding-top: 2.5em;
+}
+
+#splash-screen .continue {
+    cursor: pointer;
+    font-size: 0.7em;
+}
+
+#splash-screen .splash-image {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 6em;
+    height: 6em;
+    background-image: url('../images/splash.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}

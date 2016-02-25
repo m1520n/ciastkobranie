@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'rifficregular';
+    src: url('../fonts/riffic-webfont.eot');
+    src: url('../fonts/riffic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/riffic-webfont.woff2') format('woff2'),
+         url('../fonts/riffic-webfont.woff') format('woff'),
+         url('../fonts/riffic-webfont.ttf') format('truetype'),
+         url('../fonts/riffic-webfont.svg#rifficregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotoregular';
+    src: url('../fonts/roboto-regular-webfont.eot');
+    src: url('../fonts/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/roboto-regular-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-regular-webfont.woff') format('woff'),
+         url('../fonts/roboto-regular-webfont.ttf') format('truetype'),
+         url('../fonts/roboto-regular-webfont.svg#robotoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
