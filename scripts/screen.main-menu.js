@@ -2,6 +2,7 @@ cookies.screens["main-menu"] = (function() {
     var dom = cookies.dom,
         game = cookies.game,
         firstRun = true;
+    
     function setup() {
         dom.bind("#main-menu ul.menu", "click", function() {
             if (e.target.nodeName.toLowerCase() === "button") {
@@ -10,14 +11,16 @@ cookies.screens["main-menu"] = (function() {
             }
         });
     }
+    
     function run() {
         if (firstRun) {
             setup();
             firstRun = false;
         }
     }
+    
     return {
-        run : run
+        run: run
     };
 })();
                                 
