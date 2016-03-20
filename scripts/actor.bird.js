@@ -1,14 +1,15 @@
-cookies.actors["bird"] = (function() {
-    var x = 0,               // bird x position
+cookies.actors.bird = (function () {
+	"use strict";
+	var x = 0,              // bird x position
         y = 0,              // bird y position
-        frame = 0,           // initial frame count
-        g = 0.6,             // gravity
-        vx = 6,              // initial x velocity
-        vy = -8,             // initial y velocity
+        frame = 0,          // initial frame count
+        g = 0.6,            // gravity
+        vx = 6,             // initial x velocity
+        vy = -8,            // initial y velocity
         mass = 0.5,
         
-        bounceFactor = 0.8,  // used for bouncing after death
-        rotation = 0,        // rotation for rotate function
+        bounceFactor = 0.8, // used for bouncing after death
+        rotation = 0,       // rotation for rotate function
         radius = 0,
         xCenter = 0,
         yCenter = 0,
@@ -16,8 +17,8 @@ cookies.actors["bird"] = (function() {
         dead = false,        //dead state
         invincible = false,
 
-        draw = function(ctx) {
-            if(!this.dead) {
+        draw = function (ctx) {
+            if (!this.dead) {
                 ctx.save();
                 spriteBird[this.frame].draw(ctx, this.x, this.y);
                 ctx.restore();
@@ -27,16 +28,16 @@ cookies.actors["bird"] = (function() {
                 }
             } else {
                 ctx.save();
-                ctx.translate(this.x+spriteBird[this.frame].width/2, this.y+spriteBird[this.frame].height/2);
+                ctx.translate(this.x + spriteBird[this.frame].width / 2, this.y + spriteBird[this.frame].height / 2);
                 ctx.rotate(this.rotation);
-                ctx.translate(-(this.x+spriteBird[this.frame].width/2), -(this.y+spriteBird[this.frame].height/2));
+                ctx.translate(-(this.x + spriteBird[this.frame].width / 2), -(this.y + spriteBird[this.frame].height / 2));
                 spriteBird[this.frame].draw(ctx, this.x, this.y);
                 ctx.restore();
                 this.rotation += 0.2;
             }
         },
 
-        flypUp = function(ctx) {
+        flypUp = function (ctx) {
             if (this.vy > -7) this.vy = -7;       // make sure the jump is always in upward direction
             if (this.vy < -7) this.vy = -7;       // make sure the jumping is linear
             
@@ -44,7 +45,7 @@ cookies.actors["bird"] = (function() {
             popSound.play();
         },
 
-        eat = function() {
+        eat = function () {
             if (this.x <= cookie.x + spriteCookie[0].width &&
                 cookie.x + spriteCookie[0].width <= this.x + spriteBird[this.frame].width &&
                 this.y <= cookie.y + spriteCookie[0].height &&
@@ -63,7 +64,7 @@ cookies.actors["bird"] = (function() {
                         }, 5000);
                     }
                     
-                    if (cookie.cookieType == cookieTypes.gravity) {
+                    if (cookie.cookieType === cookieTypes.gravity) {
                         this.g = 0.75;
                         
                         gravitySound.currentTime = 0;
@@ -74,7 +75,7 @@ cookies.actors["bird"] = (function() {
                         }, 5000);
                     }
                     
-                    if (!this.dead) score++;    //increase points only when alive
+                    if (!this.dead) score ++;    //increase points only when alive
                     
                     eatSound.currentTime = 0;
                     eatSound.play();
@@ -84,7 +85,7 @@ cookies.actors["bird"] = (function() {
                 }
         },
 
-        respawn = function() {
+        respawn = function () {
             score = 0;          // reset score
             this.dead = 0;      // reset dead state
             this.invincible = 0 // reset invincible state
@@ -98,7 +99,7 @@ cookies.actors["bird"] = (function() {
             this.y = (height / 2) - (spriteBird[this.frame].height / 2);             
         },
 
-        hitBall = function() {
+        hitBall = function () {
             this.xCenter = this.x + this.radius;
             this.yCenter = this.y + this.radius;
             if (this.xCenter + this.radius + ball.radius > ball.xCenter
@@ -131,68 +132,68 @@ cookies.actors["bird"] = (function() {
                         }
                     }
                 }
-            },
+        },
 
-            die = function() {
-                deadSound.play();                       // play dead sound
-                this.dead = true;                       // change dead state to true
-                currentGameState = gameStates.Score;    // change game state to Score
-            },
+        die = function () {
+            deadSound.play();                       // play dead sound
+            this.dead = true;                       // change dead state to true
+            currentGameState = gameStates.Score;    // change game state to Score
+        },
 
 
-            update = function() {
-                this.x += this.vx;          // update bird x position by x velocity
-                this.y += this.vy;          // update bird y position by y velocity
-                this.vy += this.g;          // update velocity by gravity value
+        update = function () {
+            this.x += this.vx;          // update bird x position by x velocity
+            this.y += this.vy;          // update bird y position by y velocity
+            this.vy += this.g;          // update velocity by gravity value
 
-                // Change animation frame depending on vertical velocity
-                if (this.vx < 0) {
-                    if (this.vy < 0) {
-                        this.frame = 1;
-                    } else {
-                        this.frame = 3;
-                    }
+            // Change animation frame depending on vertical velocity
+            if (this.vx < 0) {
+                if (this.vy < 0) {
+                    this.frame = 1;
                 } else {
-                    if (this.vy > 0) {
-                        this.frame = 0;
-                    } else {
-                        this.frame = 2;
-                    }
+                    this.frame = 3;
                 }
-
-                // bounce from the floor
-                if (this.y + 75 > height) {
-                    this.y = height - 75;                               // reposition the bird if it goes outside the boundries
-                    this.vy = -this.vy * this.bounceFactor;             // reverse the direction
-                    if (!this.dead) this.die();                         // change dead state to true
+            } else {
+                if (this.vy > 0) {
+                    this.frame = 0;
+                } else {
+                    this.frame = 2;
                 }
-
-               // bounce from the ceiling
-               if (this.y < 25) {
-                   this.y = 25;                                         // reposition the bird if it goes outside the boundries
-                   this.vy = -this.vy;                                  // reverse the direction
-                   if (!this.dead) this.die();                          // change dead state to true
-               }
-
-               // bounce form left wall
-               if (this.x < 0) {
-                   this.x = 0;
-                   this.vx = -this.vx;                                  // reverse the direction
-                   birdSound.currentTime = 0;
-                   birdSound.play();
-               }
-
-               // bounce from right wall
-               if (this.x + spriteBird[this.frame].width > width) {
-                   this.x = width - spriteBird[this.frame].width;
-                   this.vx = -this.vx;                                  // reverse the direction
-                   birdSound.currentTime = 0;
-                   birdSound.play();
-               }
-            },
-
-            wobble = function() {
-                this.y += Math.cos(frames/15);
             }
-        }
-                          })
+
+            // bounce from the floor
+            if (this.y + 75 > height) {
+                this.y = height - 75;                               // reposition the bird if it goes outside the boundries
+                this.vy = -this.vy * this.bounceFactor;             // reverse the direction
+                if (!this.dead) this.die();                         // change dead state to true
+            }
+
+           // bounce from the ceiling
+           if (this.y < 25) {
+               this.y = 25;                                         // reposition the bird if it goes outside the boundries
+               this.vy = -this.vy;                                  // reverse the direction
+               if (!this.dead) this.die();                          // change dead state to true
+           }
+
+           // bounce form left wall
+           if (this.x < 0) {
+               this.x = 0;
+               this.vx = -this.vx;                                  // reverse the direction
+               birdSound.currentTime = 0;
+               birdSound.play();
+           }
+
+           // bounce from right wall
+           if (this.x + spriteBird[this.frame].width > width) {
+               this.x = width - spriteBird[this.frame].width;
+               this.vx = -this.vx;                                  // reverse the direction
+               birdSound.currentTime = 0;
+               birdSound.play();
+           }
+        },
+
+        wobble = function () {
+            this.y += Math.cos(frames/15);
+        };
+    }
+}());

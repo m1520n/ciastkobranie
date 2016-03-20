@@ -1,8 +1,6 @@
-     //--------------------------------------------------------
-        //    AUDIO ASSETS
-        //--------------------------------------------------------
-        
-        birdSound,
+cookies.audio = (function () {
+	"use strict";
+	var birdSound,
         popSound,
         deadSound,
         eatSound,
@@ -16,4 +14,5 @@
             eatCookie: "resources/eat.mp3",
             boost: "resources/boost.mp3",
             gravity: "resources/gravity.mp3"
-        },
+        };
+}());
