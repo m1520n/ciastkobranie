@@ -1,3 +1,7 @@
+/*
+// This Module is responsible for redirecting between game modules
+*/
+
 cookies.game = (function () {
     var dom = cookies.dom,
     	$ = dom.$;
@@ -12,7 +16,9 @@ cookies.game = (function () {
         cookies.screens[screenId].run();
         dom.addClass(screen, "active");
     }
+    
+        
     return {
         showScreen: showScreen
     };
-})();
+}());

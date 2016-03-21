@@ -13,8 +13,10 @@ window.addEventListener("load", function() {
             "scripts/sizzle.js",
             "scripts/dom.js",
             "scripts/game.js",
+            "scripts/board.js",
             "scripts/screen.splash.js",
-            "scripts/screen.main-menu.js"
+            "scripts/screen.main-menu.js",
+            "scripts/screen.play.js"
         ],
         
         complete: function() {

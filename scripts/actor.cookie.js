@@ -1,6 +1,8 @@
 cookies.actors.cookie = (function() {
-	"use strict";
-	var x = 0,
+	
+    "use strict";
+	
+    var x = 0,
 		y = 0,
 		
 		eaten = 0,
@@ -16,7 +18,7 @@ cookies.actors.cookie = (function() {
 		
 		cookieType = cookieTypes.regular,
 		
-		draw = function(ctx) {
+		function draw(ctx) {
 			if (this.eaten == 0) {
 				spriteCookie[this.cookieType].draw(ctx, this.x, this.y);
 			}
@@ -28,13 +30,13 @@ cookies.actors.cookie = (function() {
 			}
 		},
 		
-		cookieDuration = function(duration) {
+		function cookieDuration(duration) {
 			test = setTimeout(function() {
 				return cookie.respawn();
 			}, duration);
 		},
 		
-		respawn = function() {
+		function respawn() {
 			clearTimeout(test);
 			this.cookieType = cookieTypes.regular;
 			this.lastCookieSide = this.currentCookieSide;
@@ -55,7 +57,7 @@ cookies.actors.cookie = (function() {
 			this.eaten = 0;
 		},
 		
-		wobble = function() {
+		function wobble() {
 			this.y += 3*Math.cos(frames/10);
 		},
 		

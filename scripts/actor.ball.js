@@ -1,6 +1,9 @@
 cookies.actors.ball = (function () {
+    
     "use strict";
-	var x = 200, //change to middle of canvas
+    
+    var bird = cookies.actors.bird,
+        x = 200, //change to middle of canvas
 		y = -10,
 		g = 0.05,
 		vx = 0,
@@ -12,7 +15,7 @@ cookies.actors.ball = (function () {
 		xCenter = 0,
 		yCenter = 0,
 
-		draw = function (ctx) {
+		function draw(ctx) {
 		    ctx.save();
 		    ctx.translate(this.x + spriteBall.width / 2, this.y + spriteBall.height / 2);
 		    ctx.rotate(this.rotation);
@@ -22,7 +25,7 @@ cookies.actors.ball = (function () {
 		    ctx.restore();
 		},
 		
-		update = function () {
+		function update() {
 		    this.x += this.vx;
 		    this.y += this.vy;
 		    this.vy += this.g;
@@ -37,7 +40,7 @@ cookies.actors.ball = (function () {
 		    }
 		},
 
-		rebound = function () {
+		function rebound() {
 		    this.vx += bird.vx;
 		    this.vy += bird.vx;
 		    bird.vx *= -1;
@@ -46,7 +49,7 @@ cookies.actors.ball = (function () {
 		    birdSound.play();
 		},
 
-		respawn = function () {
+		function respawn() {
 		    this.vx = 0;
 		    this.vy = 5;
 		    this.x = cookieXPos();

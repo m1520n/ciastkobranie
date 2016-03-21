@@ -1,6 +1,11 @@
 cookies.actors.bird = (function () {
-	"use strict";
-	var x = 0,              // bird x position
+    
+    "use strict";
+    
+    var ball = cookies.actors.ball,
+        cookie = cookies.actors.cookie,
+        
+        x = 0,              // bird x position
         y = 0,              // bird y position
         frame = 0,          // initial frame count
         g = 0.6,            // gravity
@@ -17,7 +22,7 @@ cookies.actors.bird = (function () {
         dead = false,        //dead state
         invincible = false,
 
-        draw = function (ctx) {
+        function draw(ctx) {
             if (!this.dead) {
                 ctx.save();
                 spriteBird[this.frame].draw(ctx, this.x, this.y);
@@ -37,7 +42,7 @@ cookies.actors.bird = (function () {
             }
         },
 
-        flypUp = function (ctx) {
+        function flyUp(ctx) {
             if (this.vy > -7) this.vy = -7;       // make sure the jump is always in upward direction
             if (this.vy < -7) this.vy = -7;       // make sure the jumping is linear
             
@@ -45,7 +50,7 @@ cookies.actors.bird = (function () {
             popSound.play();
         },
 
-        eat = function () {
+        function eat() {
             if (this.x <= cookie.x + spriteCookie[0].width &&
                 cookie.x + spriteCookie[0].width <= this.x + spriteBird[this.frame].width &&
                 this.y <= cookie.y + spriteCookie[0].height &&
@@ -85,7 +90,7 @@ cookies.actors.bird = (function () {
                 }
         },
 
-        respawn = function () {
+        function respawn() {
             score = 0;          // reset score
             this.dead = 0;      // reset dead state
             this.invincible = 0 // reset invincible state
@@ -99,7 +104,7 @@ cookies.actors.bird = (function () {
             this.y = (height / 2) - (spriteBird[this.frame].height / 2);             
         },
 
-        hitBall = function () {
+        function hitBall() {
             this.xCenter = this.x + this.radius;
             this.yCenter = this.y + this.radius;
             if (this.xCenter + this.radius + ball.radius > ball.xCenter
@@ -134,14 +139,14 @@ cookies.actors.bird = (function () {
                 }
         },
 
-        die = function () {
+        function die() {
             deadSound.play();                       // play dead sound
             this.dead = true;                       // change dead state to true
             currentGameState = gameStates.Score;    // change game state to Score
         },
 
 
-        update = function () {
+        function update() {
             this.x += this.vx;          // update bird x position by x velocity
             this.y += this.vy;          // update bird y position by y velocity
             this.vy += this.g;          // update velocity by gravity value
@@ -192,7 +197,7 @@ cookies.actors.bird = (function () {
            }
         },
 
-        wobble = function () {
+        function wobble() {
             this.y += Math.cos(frames/15);
         };
     }

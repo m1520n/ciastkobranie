@@ -4,7 +4,7 @@ cookies.screens["main-menu"] = (function() {
         firstRun = true;
     
     function setup() {
-        dom.bind("#main-menu ul.menu", "click", function() {
+        dom.bind("#main-menu ul.menu", "click", function(e) {
             if (e.target.nodeName.toLowerCase() === "button") {
                 var action = e.target.getAttribute("name");
                 game.showScreen(action);
